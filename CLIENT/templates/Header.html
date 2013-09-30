@@ -14,4 +14,38 @@
   ~  See the License for the specific language governing permissions and limitations under the License.
   -->
 
-<h2>HEADER</h2>
+<nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <!-- TODO: The name of the Web-app or the BRAND -->
+        <a class="navbar-brand" href="#">SKELETON WEBAPP</a>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+            {{#each []}}
+            <li
+            {{#if this.active}}class="active"{{/if}}
+            data-toggle="tooltip" title="{{this.tooltip}}"
+            >
+            <a href="{{this.href}}">{{this.name}}</a>
+            </li>
+            {{/each}}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li data-toggle="tooltip" title="Returning User Login Here">
+                <a href="#login">Login</a>
+            </li>
+            <li data-toggle="tooltip" title="New User Signup Here">
+                <a href="#signup">Signup</a>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -27,6 +27,8 @@ define(['app.logger', 'jquery', 'backbone'],
         var AppRouter = Backbone.Router.extend({
             routes: {
                 '': 'navigateApp',
+                'login': 'login',
+                'signup': 'signup',
                 '*filter': 'setFilter'
             },
 
@@ -41,6 +43,14 @@ define(['app.logger', 'jquery', 'backbone'],
                 });
                 LOGGER.trace('routers/Router', 'navigateHome', 'Rendering AppView');
                 return this;
+            },
+
+            login: function () {
+                alert("Login...");
+            },
+
+            signup: function () {
+                alert('Signup...');
             },
 
             // Set the current filter to be used

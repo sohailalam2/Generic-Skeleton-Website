@@ -20,9 +20,9 @@
  * Date: 29/9/13
  * Time: 12:39 PM
  */
-define(['app.logger', 'jquery', 'underscore', 'backbone', 'handlebars',
+define(['app.logger', 'jquery', 'underscore', 'backbone', 'handlebars', 'collections/Navigation',
     'text!templates/Header.html', 'text!templates/home/Content.html', 'text!templates/Footer.html'],
-    function (LOGGER, $, _, Backbone, Handlebars, HeaderTemplate, ContentTemplate, FooterTemplate) {
+    function (LOGGER, $, _, Backbone, Handlebars, NavigationCollection, HeaderTemplate, ContentTemplate, FooterTemplate) {
         'use strict';
 
         var AppView = Backbone.View.extend({
@@ -57,8 +57,7 @@ define(['app.logger', 'jquery', 'underscore', 'backbone', 'handlebars',
                 if (this.footer_template === '') {
                     this.footer_template = Handlebars.compile(FooterTemplate);
                 }
-
-                this.$header.html(this.header_template());
+                this.$header.html(this.header_template(NavigationCollection.toJSON()));
                 this.$container.html(this.container_template());
                 this.$footer.html(this.footer_template());
 

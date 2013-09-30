@@ -14,13 +14,25 @@
   ~  See the License for the specific language governing permissions and limitations under the License.
   -->
 
+<!--
+templates/App.html is the primary container that has three sections :
+    1. Header: This contains the navigation bar
+    2. Container: This holds all the relevant information about the current page
+    3. Footer: This contains the footer information
+
+templates/App.html is first compiled and then inserted into the body tag of the index.html file.
+After that the above three sections are inserted by compiling their individual templates.
+ -->
 <div class="container">
+    <!-- The Header -->
     <div class="row">
         <div class="col-md-12" id="app_navigation"></div>
     </div>
+    <!-- The Container -->
     <div class="row">
         <div class="col-md-12" id="app_container"></div>
     </div>
+    <!-- The Footer -->
     <div class="row">
         <div class="col-md-12" id="app_footer" style="position: fixed; bottom: 1%"></div>
     </div>

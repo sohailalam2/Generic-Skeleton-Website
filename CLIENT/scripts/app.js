@@ -165,8 +165,8 @@ requirejs.config({
 });
 
 // Start the main app logic
-requirejs(['app.logger', 'app.config', 'backbone', 'bootstrap', 'app.router'],
-    function (LOGGER, AppConfig, Backbone) {
+requirejs(['app.logger', 'app.config', 'backbone', 'jquery', 'bootstrap', 'app.router'],
+    function (LOGGER, AppConfig, Backbone, $) {
         'use strict';
 
         // Log the Application Specific Info

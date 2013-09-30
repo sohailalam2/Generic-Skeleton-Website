@@ -63,12 +63,6 @@ define(['app.logger', 'jquery', 'underscore', 'backbone', 'handlebars',
                 }, 500);
                 LOGGER.trace('views/App', 'render', 'AppView Rendered');
                 return this;
-            },
-
-            // Click Event Handler
-            clickHandler: function () {
-                AppController.clickHandler();
-                return this;
             }
         });
         return new AppView();
