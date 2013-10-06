@@ -15,6 +15,8 @@
  */
 
 /**
+ * This is the Application Router
+ *
  * User: Sohail Alam
  * Version: 1.0.0
  * Date: 29/9/13
@@ -55,6 +57,7 @@ define(['app.logger', 'jquery', 'backbone'],
 
             // Set the current filter to be used
             setFilter: function (param) {
+//                this.navigateApp();
             }
         });
 

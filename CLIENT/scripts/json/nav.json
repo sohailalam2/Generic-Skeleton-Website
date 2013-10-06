@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "Home",
+        "href": "#home",
+        "tooltip": "Navigate To Home Page",
+        "active": true
+    },
+    {
+        "id": 2,
+        "name": "News",
+        "href": "#news",
+        "tooltip": "Navigate To News Page",
+        "active": false
+    }
+]

@@ -15,6 +15,11 @@
  */
 
 /**
+ * The AppController is responsible for loading the Home Page by default,
+ * or loads the page that the client last visited.
+ * The last visited page information is saved in the browser's localStorage (if supported),
+ * or cookies if localStorage is not supported.
+ *
  * User: Sohail Alam
  * Version: 1.0.0
  * Date: 29/9/13
@@ -23,10 +28,10 @@
 define(['app.logger'], function (LOGGER) {
     'use strict';
 
+    // TODO: Check the last visited page information from localStorage/Cookies and load that page
     var AppController = new function () {
 
         this.start = function () {
-            // Async version of require
             require(['views/Home'], function (HomeView) {
                 HomeView.render();
             });

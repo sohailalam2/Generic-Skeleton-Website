@@ -15,6 +15,11 @@
  */
 
 /**
+ * This is the Home View - the default view
+ * The HomeView is responsible for laying out the header (navigation),
+ * the content area that will hold all subsequent page's information
+ * and the footer.
+ *
  * User: Sohail Alam
  * Version: 1.0.0
  * Date: 29/9/13
@@ -25,7 +30,7 @@ define(['app.logger', 'jquery', 'underscore', 'backbone', 'handlebars', 'collect
     function (LOGGER, $, _, Backbone, Handlebars, NavigationCollection, HeaderTemplate, ContentTemplate, FooterTemplate) {
         'use strict';
 
-        var AppView = Backbone.View.extend({
+        var HomeView = Backbone.View.extend({
 
             $header: $('#app_navigation'),
             $container: $('#app_container'),
@@ -41,8 +46,20 @@ define(['app.logger', 'jquery', 'underscore', 'backbone', 'handlebars', 'collect
 
             },
 
+            // This will update the Navigation Bar, but will be done so only when the
+            // Navigation Collection updates.
+            // In order for this to work correctly, we need to pass the HomeView's
+            // scope wile calling this function from NavigationCollection
+            updateNav: function (scope) {
+                scope.$header.html(scope.header_template(NavigationCollection.toJSON()));
+                LOGGER.trace('views/Home', 'updateNav', 'Navigation Updated');
+                return scope;
+            },
+
             // Constructor
             initialize: function () {
+                // Update the Navigation Passing this scope as second argument
+                NavigationCollection.populateNav(this.updateNav, this);
                 LOGGER.trace('views/Home', 'initialize', 'HomeView Initialized');
             },
 
@@ -57,7 +74,6 @@ define(['app.logger', 'jquery', 'underscore', 'backbone', 'handlebars', 'collect
                 if (this.footer_template === '') {
                     this.footer_template = Handlebars.compile(FooterTemplate);
                 }
-                this.$header.html(this.header_template(NavigationCollection.toJSON()));
                 this.$container.html(this.container_template());
                 this.$footer.html(this.footer_template());
 
@@ -65,6 +81,7 @@ define(['app.logger', 'jquery', 'underscore', 'backbone', 'handlebars', 'collect
                 return this;
             }
         });
-        return new AppView();
+
+        return new HomeView();
     }
 );

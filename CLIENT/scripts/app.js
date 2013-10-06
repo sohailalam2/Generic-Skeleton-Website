@@ -15,6 +15,8 @@
  */
 
 /**
+ * This is the requirejs configuration and also the starting point of the web application
+ *
  * User: Sohail Alam
  * Version: 1.0.0
  * Date: 29/9/13

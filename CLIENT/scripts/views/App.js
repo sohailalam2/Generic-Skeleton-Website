@@ -15,6 +15,9 @@
  */
 
 /**
+ * This is the primary module which is responsible for laying out the
+ * site's skeleton structure.
+ *
  * User: Sohail Alam
  * Version: 1.0.0
  * Date: 29/9/13
@@ -51,16 +54,15 @@ define(['app.logger', 'jquery', 'underscore', 'backbone', 'handlebars',
 
             // Re-render the contents
             render: function () {
-                var that = this;
                 if (this.template === '') {
                     this.template = Handlebars.compile(AppTemplate);
                 }
                 this.$el.html(this.template());
 
-                // Start the Controller Actions 500 milliseconds after the rendering is complete
+                // Start the Controller Actions 250 milliseconds after the rendering is complete
                 setTimeout(function () {
                     AppController.start();
-                }, 500);
+                }, 250);
                 LOGGER.trace('views/App', 'render', 'AppView Rendered');
                 return this;
             }

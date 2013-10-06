@@ -15,10 +15,12 @@
  */
 
 /**
- * This file contains all the application specific information.
+ * This module contains all the application specific information.
  *
  * Any module that requires access to application specific configurations must
- * require this app.config module.
+ * require this module.
+ *
+ * It can be noted that this module is explicitly named as app.config
  *
  * User: Sohail Alam
  * Version: 1.0.0
@@ -27,7 +29,7 @@
  */
 define('app.config', ['require'], {
     app_name: 'GenericSkeletonWebsite',
-    app_version: '1.0.0',
+    app_version: '1.0.1',
     app_release_date: '29th Sep, 2013',
     app_author: 'Sohail Alam',
     app_description: 'Welcome to the world of Generic Skeleton Website',

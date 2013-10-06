@@ -15,66 +15,53 @@
  */
 
 /**
+ * This module is used to load up the Navigation Menu items and update the
+ * Navigation Header.
+ * You can easily add/remove navigation items by editing the nav.json
+ * which can be found in ./scripts/json directory.
+ *
  * User: Sohail Alam
  * Version: 1.0.0
  * Date: 30/9/13
  * Time: 9:42 AM
  */
-define(['app.logger', 'app.config', 'underscore', 'backbone', 'localStorage', 'models/Navigation'],
-    function (LOGGER, AppConfig, _, Backbone, LocalStorage, NavigationModel) {
+define(['app.logger', 'app.config', 'underscore', 'backbone', 'localStorage'],
+    function (LOGGER, AppConfig, _, Backbone, LocalStorage) {
         'use strict';
 
         var NavigationCollection = Backbone.Collection.extend({
             // Reference to this collection's model
-            model: NavigationModel,
+            model: Backbone.Model.extend({
+                // Nothing to do here - not needed
+            }),
+
+            // This is where the Navigation Menu items are kept
+            url: "./scripts/json/nav.json",
 
             // Save all of the data under a unique namespace
-            localStorage: new LocalStorage(AppConfig.app_namespace() + "_collections"),
+//            localStorage: new LocalStorage(AppConfig.app_namespace() + "_collections"),
 
+            // Constructor
             initialize: function () {
                 LOGGER.trace('collections/Navigation', 'initialize', 'NavigationCollection Initialized');
-            }
-        });
-
-        var nav = new NavigationCollection();
-
-        var data = [
-            // HOME - 1
-            {
-                id: 1,
-                name: 'Home',
-                href: '#home',
-                tooltip: 'Navigate To Home Page',
-                active: true
             },
-            // NEWS - 2
-            {
-                id: 2,
-                name: 'News',
-                href: '#news',
-                tooltip: 'Navigate To News Page',
-                active: false
-            }
-        ];
 
-        function createNavigation() {
-            console.debug("Creating Nav Items");
-            _.each(data, function (model) {
-                nav.create(model);
-            });
-        }
-
-        // Create the Navigation Menu Items
-
-        // Populate the collection from Local Storage Data
-        nav.fetch().done(function () {
-            // If no data is available then create it
-            if (nav.length != data.length) {
-                createNavigation();
+            // Do a server fetch if not locally available and update the Navigation
+            populateNav: function (updateNav, scope) {
+                this.fetch({
+                    success: function () {
+                        updateNav(scope);
+                    },
+                    error: function () {
+                        //TODO: Show a better alert
+                        alert("Could not populate the Navigation... please try again");
+                    }
+                });
+                LOGGER.trace('collections/Navigation', 'populateNav', 'Navigation Populated');
             }
         });
 
-        return nav;
+        return new NavigationCollection;
 
     }
 );
